@@ -26,11 +26,22 @@ function App() {
       setMode('dark');
       document.body.style.background = '#040619';
       showAlert("Dark Mode has been enabled", "success")
+      document.title = 'TextUtils - Dark Mode'
+
+      // This is for giving a Blinking effect to the title of the page
+      // setInterval(()=>{
+      //   document.title = 'TextUtils is Amazing!!!'
+      // },1300);
+      // setInterval(()=>{
+      //   document.title = 'TextUtils is Cool!!!'
+      // },1700);
+
     }
     else{
       setMode('light')
       document.body.style.background = 'white';
       showAlert("Light Mode has been enabled", "success")
+      document.title = 'TextUtils - Light Mode'      
     }
   }
 
@@ -48,9 +59,6 @@ function App() {
 }
 
 export default App;
-
-
-
 
 
 
