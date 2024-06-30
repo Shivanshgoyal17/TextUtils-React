@@ -1,17 +1,46 @@
+import { useState } from 'react';
 import './App.css';
 // import About from './Components/About';
 import Navbar from './Components/Navbar';
 import TextForm from './Components/TextForm';
-
+import Alert from './Components/Alert';
 
 
 function App() {
+
+  const [mode, setMode] = useState('light');  // Whether dark mode is enabled or not
+  const [alert, setAlert] = useState(null);
+
+  const showAlert = (message, type) =>{
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(()=>{
+      setAlert(null)
+    }, 1500);
+  }
+
+  const toggleMode = ()=>{
+    if(mode === 'light'){
+      setMode('dark');
+      document.body.style.background = '#040619';
+      showAlert("Dark Mode has been enabled", "success")
+    }
+    else{
+      setMode('light')
+      document.body.style.background = 'white';
+      showAlert("Light Mode has been enabled", "success")
+    }
+  }
+
   return (
     <>
-      <Navbar title="TextUtils" aboutText="About TextUtils" />
-      {/* <Navbar/> */}
+      <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode} />
+      <Alert alert={alert} />
+
       <div className="container my-3" >
-        <TextForm heading="Enter the text to analyse" />
+        <TextForm showAlert={showAlert} heading="Enter the text to analyse" mode={mode}/>
         {/* <About/> */}
       </div>
     </>
@@ -56,6 +85,7 @@ export default App;
 // We will see default export and named export
 // We can use any variable name when calling default export but we need to use same variable name when calling named export with {} braces.
 
+//  <Navbar/>  - Basic use of component
 
 // Now we will start PROPS. For that we will make a seperate component.
 // Props kul mila ke aisa hai ki aap kuch cheeze de rhe hain variables ki tarah components ko banane ke liye
