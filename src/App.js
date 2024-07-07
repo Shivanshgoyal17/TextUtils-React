@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-// import About from './Components/About';
 import Navbar from './Components/Navbar';
-import TextForm from './Components/TextForm';
 import Alert from './Components/Alert';
-
+import TextForm from './Components/TextForm';
+import About from './Components/About';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
 
@@ -47,13 +52,21 @@ function App() {
 
   return (
     <>
-      <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode} />
-      <Alert alert={alert} />
+      <Router>
+        <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
 
-      <div className="container my-3" >
-        <TextForm showAlert={showAlert} heading="Enter the text to analyse" mode={mode}/>
-        {/* <About/> */}
-      </div>
+        <div className="container my-3" >
+          <Switch>
+            <Route exact path="/about">
+              <About />
+            </Route>
+            <Route exact path="/">
+              <TextForm showAlert={showAlert} heading="Enter the text to analyse" mode={mode}/>
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </>
   );
 }
@@ -99,6 +112,3 @@ export default App;
 // Props kul mila ke aisa hai ki aap kuch cheeze de rhe hain variables ki tarah components ko banane ke liye
 // Ab isme zaruri ni ki hum sirf strings hi pass kare hum objects bhi pass kar sakte hain.
 // Now we'll see proptypes
-
-
-
