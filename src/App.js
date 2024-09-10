@@ -7,8 +7,7 @@ import About from './Components/About';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
@@ -31,7 +30,7 @@ function App() {
       setMode('dark');
       document.body.style.background = '#040619';
       showAlert("Dark Mode has been enabled", "success")
-      document.title = 'TextUtils - Dark Mode'
+      // document.title = 'TextUtils - Dark Mode'
 
       // This is for giving a Blinking effect to the title of the page
       // setInterval(()=>{
@@ -46,7 +45,7 @@ function App() {
       setMode('light')
       document.body.style.background = 'white';
       showAlert("Light Mode has been enabled", "success")
-      document.title = 'TextUtils - Light Mode'      
+      // document.title = 'TextUtils - Light Mode'  
     }
   }
 
@@ -59,10 +58,10 @@ function App() {
         <div className="container my-3" >
           <Switch>
             <Route exact path="/about">
-              <About />
+              <About mode={mode} />
             </Route>
             <Route exact path="/">
-              <TextForm showAlert={showAlert} heading="Enter the text to analyse" mode={mode}/>
+              <TextForm showAlert={showAlert} heading="Try TextUtils - Word Counter, Character Counter, Remove extra spaces" mode={mode}/>
             </Route>
           </Switch>
         </div>
@@ -112,3 +111,18 @@ export default App;
 // Props kul mila ke aisa hai ki aap kuch cheeze de rhe hain variables ki tarah components ko banane ke liye
 // Ab isme zaruri ni ki hum sirf strings hi pass kare hum objects bhi pass kar sakte hain.
 // Now we'll see proptypes
+
+
+// Video - 17 React router does not work properly with github pages but it will work properly for the servers hosted online.
+
+// So as we are using github pages for hosting, as of now will remove the about page
+
+// Also we used {link and to} in place of {a and href} for react router only so will revert it to {a and href}  
+
+// < NOTE - we use # when using href so that whenit is clicked it doen not take the user outside and keep that href value disabled >
+
+// Also will remove the router related things before hosting in github pages.
+
+// After we host it I will keep everything as before in local.
+
+// "homepage": "https://Shivanshgoyal17.github.io/TextUtils-React", I have removed this line from the package.json file to be able to run the project in local without any issues, as the code is already deployed in github pages.
